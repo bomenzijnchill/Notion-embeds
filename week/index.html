@@ -37,7 +37,7 @@
   }
 
   .callout-icon {
-    font-size: 18px;
+    font-size: 20px;
     line-height: 1.5;
     flex-shrink: 0;
   }
@@ -49,10 +49,23 @@
   }
 
   .callout-title {
+    display: flex;
+    align-items: baseline;
+    gap: 7px;
+  }
+
+  .wk-label {
     font-size: 16px;
     font-weight: 600;
     line-height: 1.5;
     color: rgba(255, 255, 255, 0.81);
+  }
+
+  #weekNumber {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1;
+    color: rgba(255, 255, 255, 0.92);
   }
 
   .callout-sub {
@@ -68,7 +81,7 @@
   <div class="callout">
     <span class="callout-icon">🗓️</span>
     <div class="callout-content">
-      <span class="callout-title">Week <span id="weekNumber">22</span></span>
+      <span class="callout-title"><span class="wk-label">Week</span><span id="weekNumber">22</span></span>
       <span class="callout-sub" id="fullDate">dinsdag 26 mei 2026</span>
     </div>
   </div>
