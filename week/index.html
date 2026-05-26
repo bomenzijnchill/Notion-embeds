@@ -17,28 +17,27 @@
   }
 
   body {
-    background: #F5F1EA;
+    background: transparent;
     color: #1A1814;
     font-family: 'Manrope', sans-serif;
     display: flex;
     align-items: center;
-    justify-content: center;
-    padding: 32px;
+    justify-content: flex-start;
+    padding: 12px;
   }
 
   .card {
-    width: 100%;
-    max-width: 640px;
+    width: fit-content;
+    max-width: 100%;
     background: #FAF7F1;
     border: 1px solid rgba(26, 24, 20, 0.08);
     border-radius: 14px;
-    padding: 44px 56px;
+    padding: 32px 40px;
     position: relative;
     overflow: hidden;
-    display: grid;
-    grid-template-columns: auto 1fr;
+    display: flex;
     align-items: center;
-    gap: 48px;
+    gap: 34px;
     box-shadow: 0 1px 0 rgba(26, 24, 20, 0.02);
   }
 
@@ -72,7 +71,7 @@
   .week-number {
     font-family: 'Fraunces', serif;
     font-weight: 300;
-    font-size: 124px;
+    font-size: 92px;
     letter-spacing: -0.04em;
     line-height: 0.85;
     font-variation-settings: "opsz" 144;
@@ -95,7 +94,7 @@
   .weekday {
     font-family: 'Fraunces', serif;
     font-weight: 400;
-    font-size: 32px;
+    font-size: 27px;
     font-style: italic;
     line-height: 1;
     color: #1A1814;
@@ -130,20 +129,21 @@
     background: #B8533F;
   }
 
-  @media (max-width: 520px) {
-    body { padding: 20px; }
+  @media (max-width: 440px) {
+    body { padding: 10px; }
     .card {
-      padding: 32px 32px;
-      grid-template-columns: 1fr;
-      gap: 24px;
+      padding: 24px 26px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 18px;
     }
     .divider { display: none; }
-    .week-number { font-size: 96px; }
-    .weekday { font-size: 26px; }
+    .week-number { font-size: 76px; }
+    .weekday { font-size: 24px; }
   }
 
   @media (prefers-color-scheme: dark) {
-    body { background: #14110D; color: #F0EBE3; }
+    body { background: transparent; color: #F0EBE3; }
     .card {
       background: #1C1813;
       border-color: rgba(240, 235, 227, 0.08);
