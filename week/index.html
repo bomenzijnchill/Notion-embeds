@@ -29,7 +29,7 @@
     align-items: flex-start;
     gap: 10px;
     width: fit-content;
-    max-width: 100%;
+    max-width: 460px;
     background: rgba(255, 255, 255, 0.055);
     border: 1px solid rgba(255, 255, 255, 0.055);
     border-radius: 8px;
@@ -73,7 +73,48 @@
     font-weight: 400;
     line-height: 1.5;
     color: rgba(255, 255, 255, 0.46);
-    margin-top: 1px;
+    margin-top: 5px;
+  }
+
+  .phase {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid rgba(255, 255, 255, 0.09);
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .phase-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.4);
+  }
+
+  .phase-items {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .phase-item {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .phase-num {
+    font-weight: 600;
+    color: #6ba5e7;
+    white-space: nowrap;
+  }
+
+  .phase-desc {
+    color: rgba(255, 255, 255, 0.7);
   }
 </style>
 </head>
@@ -83,6 +124,10 @@
     <div class="callout-content">
       <span class="callout-title"><span class="wk-label">Week</span><span id="weekNumber">22</span></span>
       <span class="callout-sub" id="fullDate">dinsdag 26 mei 2026</span>
+      <div class="phase">
+        <span class="phase-label">Huidige fase</span>
+        <div class="phase-items" id="phaseItems"></div>
+      </div>
     </div>
   </div>
 
@@ -102,6 +147,47 @@
   const weekdays = ['zondag', 'maandag', 'dinsdag', 'woensdag', 'donderdag', 'vrijdag', 'zaterdag'];
   const months = ['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december'];
 
+  // Projectfases met datumranges (jaar 2026). Maand is 0-gebaseerd (5 = juni).
+  const Y = 2026;
+  const phases = [
+    { n: 1, name: 'Voorbereiding kick off, V1 VO/script', start: null,              end: new Date(Y, 5, 4) },
+    { n: 2, name: 'Kickoff 5 juni + scripts definitief',  start: new Date(Y, 5, 5),  end: new Date(Y, 5, 26) },
+    { n: 3, name: 'Casting, scouting, shotlists',         start: new Date(Y, 5, 26), end: new Date(Y, 6, 17) },
+    { n: 4, name: 'Draaiplanning, crew, callsheets',      start: new Date(Y, 6, 10), end: new Date(Y, 6, 20) },
+    { n: 5, name: 'Buffer / bouwvak',                     start: new Date(Y, 6, 20), end: new Date(Y, 7, 17) },
+    { n: 6, name: 'Productie',                            start: new Date(Y, 7, 17), end: new Date(Y, 8, 7) },
+    { n: 7, name: 'Post-productie',                       start: new Date(Y, 8, 7),  end: new Date(Y, 9, 6) }
+  ];
+
+  function renderPhases(today) {
+    const active = phases.filter(p => (p.start === null || today >= p.start) && today <= p.end);
+    const container = document.getElementById('phaseItems');
+    container.replaceChildren();
+    if (active.length === 0) {
+      const item = document.createElement('div');
+      item.className = 'phase-item';
+      const desc = document.createElement('span');
+      desc.className = 'phase-desc';
+      desc.textContent = 'Geen actieve fase';
+      item.appendChild(desc);
+      container.appendChild(item);
+      return;
+    }
+    active.forEach(function (p) {
+      const item = document.createElement('div');
+      item.className = 'phase-item';
+      const num = document.createElement('span');
+      num.className = 'phase-num';
+      num.textContent = 'Fase ' + p.n;
+      const desc = document.createElement('span');
+      desc.className = 'phase-desc';
+      desc.textContent = p.name;
+      item.appendChild(num);
+      item.appendChild(desc);
+      container.appendChild(item);
+    });
+  }
+
   function updateWidget() {
     const now = new Date();
     const week = getISOWeek(now);
@@ -112,6 +198,9 @@
 
     document.getElementById('weekNumber').textContent = week;
     document.getElementById('fullDate').textContent = `${weekday} ${day} ${month} ${year}`;
+
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+    renderPhases(today);
   }
 
   updateWidget();
