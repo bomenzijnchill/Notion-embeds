@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notion embeds</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #F5F1EA;
+    color: #1A1814;
+    font-family: system-ui, -apple-system, sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+  }
+  .wrap { width: 100%; max-width: 520px; }
+  h1 { font-size: 20px; font-weight: 600; margin-bottom: 4px; }
+  p { color: #5C554B; font-size: 14px; margin-bottom: 24px; }
+  a.embed {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    background: #FAF7F1;
+    border: 1px solid rgba(26, 24, 20, 0.1);
+    border-radius: 12px;
+    padding: 16px 20px;
+    margin-bottom: 10px;
+    transition: border-color .15s ease;
+  }
+  a.embed:hover { border-color: #B8533F; }
+  a.embed .name { font-weight: 600; font-size: 15px; }
+  a.embed .path { color: #8A8273; font-size: 13px; margin-top: 2px; }
+  @media (prefers-color-scheme: dark) {
+    body { background: #14110D; color: #F0EBE3; }
+    p { color: #B8AE9D; }
+    a.embed { background: #1C1813; border-color: rgba(240, 235, 227, 0.1); }
+  }
+</style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Notion embeds</h1>
+    <p>Verzameling HTML-widgets om in Notion te embedden.</p>
+    <a class="embed" href="./week/">
+      <div class="name">Week</div>
+      <div class="path">/week/</div>
+    </a>
+  </div>
+</body>
+</html>
