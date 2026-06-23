@@ -1,0 +1,37 @@
+# XcodeGen-projectdefinitie. Genereer het .xcodeproj met:
+#   brew install xcodegen
+#   cd ios && xcodegen generate && open FocusGram.xcodeproj
+#
+# Geen XcodeGen? Zie ios/README.md voor het handmatig aanmaken in Xcode.
+name: FocusGram
+options:
+  bundleIdPrefix: com.focusgram
+  deploymentTarget:
+    iOS: "16.0"
+  createIntermediateGroups: true
+
+targets:
+  FocusGram:
+    type: application
+    platform: iOS
+    sources:
+      - path: Sources
+      - path: Resources
+    info:
+      path: Resources/Info.plist
+      properties:
+        CFBundleDisplayName: FocusGram
+        UILaunchScreen: {}
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+        # Toestaan dat de app je lokale/ngrok-backend bereikt tijdens dev.
+        NSAppTransportSecurity:
+          NSAllowsArbitraryLoads: true
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.focusgram.app
+        MARKETING_VERSION: "0.1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        GENERATE_INFOPLIST_FILE: NO
+        TARGETED_DEVICE_FAMILY: "1"
+        SWIFT_VERSION: "5.0"
