@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Instagram Focus-tool</title>
+    <style>
+      :root { color-scheme: light dark; }
+      body {
+        font-family: -apple-system, system-ui, sans-serif;
+        max-width: 32rem;
+        margin: 4rem auto;
+        padding: 0 1.25rem;
+        line-height: 1.5;
+      }
+      h1 { font-size: 1.5rem; }
+      a.button {
+        display: inline-block;
+        margin-top: 1rem;
+        padding: 0.7rem 1.2rem;
+        background: #405de6;
+        color: #fff;
+        border-radius: 0.6rem;
+        text-decoration: none;
+        font-weight: 600;
+      }
+      code { background: rgba(127,127,127,0.2); padding: 0.1rem 0.3rem; border-radius: 0.3rem; }
+      .muted { opacity: 0.7; font-size: 0.9rem; }
+    </style>
+  </head>
+  <body>
+    <h1>Instagram Focus-tool</h1>
+    <p>Afleidingsvrije persoonlijke tool: stories posten, je eigen story-prestaties bekijken en inkomende DM's afhandelen — zonder feed.</p>
+    <p>Koppel eenmalig je Instagram professional-account:</p>
+    <a class="button" href="/auth/start">Koppel met Instagram</a>
+    <p class="muted">
+      Daarna haalt de iOS-app alles op via <code>/api/*</code>. Het token wordt
+      lokaal opgeslagen en automatisch ververst.
+    </p>
+  </body>
+</html>
